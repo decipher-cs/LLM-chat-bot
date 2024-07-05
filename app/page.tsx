@@ -1,32 +1,32 @@
-"use client";
-import { Input } from "@nextui-org/input";
-import { Button } from "@nextui-org/button";
-import { useState } from "react";
+"use client"
+import { Input } from "@nextui-org/input"
+import { Button } from "@nextui-org/button"
+import { useState } from "react"
 
 const generateSampleMessages = (howMany?: number) => {
-  howMany = howMany ?? 1;
-  const res = [];
+  howMany = howMany ?? 1
+  const res = []
 
   for (let i = 0; i < howMany; i++) {
-    res.push({ sentByAi: false, message: "Say hello world" });
+    res.push({ sentByAi: false, message: "Say hello world" })
 
-    res.push({ sentByAi: true, message: "Hello world" });
+    res.push({ sentByAi: true, message: "Hello world" })
   }
 
-  return res;
-};
+  return res
+}
 
 export default function Home() {
   const [messages, setMessages] = useState<
     { message: string; sentByAi: boolean }[]
-  >(generateSampleMessages(5));
+  >(generateSampleMessages(5))
 
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState("")
 
   const sendQuery = () => {
-    setMessages((p) => [{ message: query.trim(), sentByAi: false }, ...p]);
-    setQuery("");
-  };
+    setMessages((p) => [{ message: query.trim(), sentByAi: false }, ...p])
+    setQuery("")
+  }
 
   return (
     <section className="flex h-full flex-col justify-end pb-4">
@@ -52,5 +52,5 @@ export default function Home() {
         <Button onClick={sendQuery}>Send</Button>
       </div>
     </section>
-  );
+  )
 }

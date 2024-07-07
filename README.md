@@ -4,7 +4,7 @@ A simple chat bot made with vercel's Ai toolkit and ollama
 
 ### Video Preview
 
-![app demo](https://gitlab.com/decipher-cs/LLM-chat-bot/-/raw/main/public/demo.mp4?ref_type=heads)
+![app video demo](https://github.com/decipher-cs/LLM-chat-bot/assets/130742861/59b7ab2d-6cd8-45f8-b749-705fd0ec4ef7)
 
 ### Installation
 

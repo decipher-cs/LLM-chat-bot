@@ -4,7 +4,7 @@ A simple chat bot made with vercel's Ai toolkit and ollama
 
 ### Video Preview
 
-[![app demo](./public/demo.mp4)](./public/demo.mp4)
+[![app demo](./public/demo.mp4)]
 
 ### Installation
 

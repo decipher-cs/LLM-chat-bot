@@ -1,53 +1,45 @@
-# Next.js & NextUI Template
+### LLM Chat Bot
 
-This is a template for creating applications using Next.js 14 (app directory) and NextUI (v2).
+A simple chat bot
 
-[Try it on CodeSandbox](https://githubbox.com/nextui-org/next-app-template)
+### Installation
 
-## Technologies Used
+##### Install Ollama (LLM backend)
 
-- [Next.js 14](https://nextjs.org/docs/getting-started)
-- [NextUI v2](https://nextui.org/)
-- [Tailwind CSS](https://tailwindcss.com/)
-- [Tailwind Variants](https://tailwind-variants.org)
-- [TypeScript](https://www.typescriptlang.org/)
-- [Framer Motion](https://www.framer.com/motion/)
-- [next-themes](https://github.com/pacocoursey/next-themes)
+This project relies on [Ollama](https://ollama.com/) to work. You need to
 
-## How to Use
+1. Download (Ollama)[https://ollama.com/download/] for your system
+2. Download [Meta's Llama 3 model](https://ollama.com/library/llama3) (≈4GB) by running `ollama run llama3` in your terminal
 
-### Use the template with create-next-app
 
-To create a new project based on this template using `create-next-app`, run the following command:
+##### Run Development Version
 
-```bash
-npx create-next-app -e https://github.com/nextui-org/next-app-template
-```
+1. Run `pnpm i` to install all dependencies
+2. Run `pnpm dev` to start dev server
+3. Open `localhost:3000/` on your browser
+4. Start typing in the input
 
-### Install dependencies
+##### Run Production Version
 
-You can use one of them `npm`, `yarn`, `pnpm`, `bun`, Example using `npm`:
+1. Run `pnpm i` to install all dependencies
+2. Run `pnpm build` to build production version
+3. Run `pnpm preview` to start production server
+4. Open `localhost:3000/` on your browser
+5. Start typing in the input
 
-```bash
-npm install
-```
+### Tech
 
-### Run the development server
+- NextJS
+- Typescript
+- React
+- Vercel's Ai Toolkit
+- Ollama
+- Meta's llama3 model
+- Tailwind
+- NextUI
 
-```bash
-npm run dev
-```
+### Licence
 
-### Setup pnpm (optional)
-
-If you are using `pnpm`, you need to add the following code to your `.npmrc` file:
-
-```bash
-public-hoist-pattern[]=*@nextui-org/*
-```
-
-After modifying the `.npmrc` file, you need to run `pnpm install` again to ensure that the dependencies are installed correctly.
-
-## License
-
-Licensed under the [MIT license](https://github.com/nextui-org/next-app-template/blob/main/LICENSE).
+<detail>
+    <summary>GPL</summary>
+</detail>

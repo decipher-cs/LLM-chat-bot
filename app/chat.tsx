@@ -8,23 +8,31 @@ import clsx from "clsx"
 import { ThumbsDown, ThumbsUp } from "../components/icons"
 import { updateVoteStatus } from "@/storage/update"
 import { nanoid } from "nanoid"
+import Markdown from "react-markdown"
+import remarkGfm from "remark-gfm"
 
 export default function Chat(props: { messages: Message[] }) {
-  const { input, messages, handleSubmit, handleInputChange, isLoading } =
-    useChat({
-      api: "api/v1/chat",
-      onFinish: ({ id, role, content }) => {
-        createMessageEntry([{ role, content, id }])
-      },
-      initialMessages: props.messages,
-    })
+  const {
+    setMessages,
+    input,
+    messages,
+    handleSubmit,
+    handleInputChange,
+    isLoading,
+  } = useChat({
+    api: "api/v1/chat",
+    onFinish: ({ id, role, content }) => {
+      createMessageEntry([{ role, content, id }])
+    },
+    initialMessages: props.messages,
+  })
 
   return (
     <section className="flex h-full flex-col justify-end pb-4">
       <article className="flex flex-col gap-10 overflow-y-scroll p-2">
         {/* reverse method is used in conjunction with flex-col-reverse to get */}
         {/* the viewport for the messages to auto-scroll on new message and stick to the bottom */}
-        {messages.map(({ content, role, id, createdAt }) => (
+        {messages.map(({ content, role, id, createdAt, ...m }) => (
           <div
             key={id}
             className={clsx(
@@ -36,24 +44,58 @@ export default function Chat(props: { messages: Message[] }) {
               boxShadow: "0px 0px 1px 1px #0ff",
             }}
           >
-            <p className="prose">{content}</p>
+            <Markdown
+              className={"text-medium/relaxed"}
+              remarkPlugins={[remarkGfm]}
+            >
+              {content}
+            </Markdown>
 
             {role === "assistant" && (
               <span className="absolute inset-y-0 right-0 flex translate-x-full items-center text-sm">
                 <div className="mx-2 flex items-center gap-2">
-                  <ButtonGroup variant="faded" isIconOnly size="sm">
+                  <ButtonGroup isIconOnly size="sm">
                     <Button
                       aria-label="Like"
                       color="success"
-                      onClick={() => updateVoteStatus(id, "liked")}
+                      variant={
+                        "vote" in m && m.vote === "liked" ? "bordered" : "faded"
+                      }
+                      onClick={() => {
+                        updateVoteStatus(id, "liked")
+                        setMessages(
+                          messages.map((msg, i) => {
+                            if (msg.id === id) {
+                              return { ...msg, vote: "liked" }
+                            }
+                            return msg
+                          }),
+                        )
+                      }}
                     >
                       <ThumbsUp />
                     </Button>
 
                     <Button
                       aria-label="dislike"
+                      variant={
+                        "vote" in m && m.vote === "disliked"
+                          ? "bordered"
+                          : "faded"
+                      }
                       color="danger"
-                      onClick={() => updateVoteStatus(id, "disliked")}
+                      onClick={() => {
+                        updateVoteStatus(id, "disliked")
+
+                        setMessages(
+                          messages.map((msg, i) => {
+                            if (msg.id === id) {
+                              return { ...msg, vote: "disliked" }
+                            }
+                            return msg
+                          }),
+                        )
+                      }}
                     >
                       <ThumbsDown />
                     </Button>

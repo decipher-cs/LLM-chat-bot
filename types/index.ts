@@ -1,4 +1,3 @@
-import { Message } from "ai"
 import { SVGProps } from "react"
 import { z } from "zod"
 
@@ -6,7 +5,7 @@ export type IconSvgProps = SVGProps<SVGSVGElement> & {
   size?: number
 }
 
-export const messageHistorySchema: z.ZodType<Message[]> = z
+export const messageHistorySchema = z
   .object({
     id: z.string(),
     content: z.string(),

@@ -10,8 +10,8 @@ export async function POST(req: Request) {
   const { messages } = await req.json()
 
   const result = await streamText({
-    // model: ollama("llama3"), // Slower but better model
-    model: ollama("phi3"), // Faster but older less capable model
+    // model: ollama("phi3"), // Faster but older less capable model
+    model: ollama("llama3"), // Slower but better model
     messages,
   })
 

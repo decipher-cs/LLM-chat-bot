@@ -1,8 +1,7 @@
 "use client"
 import { Message, useChat } from "ai/react"
 import { Button, ButtonGroup } from "@nextui-org/button"
-import { Input } from "@nextui-org/input"
-import { Kbd } from "@nextui-org/kbd"
+import { Textarea } from "@nextui-org/input"
 import { createMessageEntry } from "@/storage/create"
 import clsx from "clsx"
 import { ThumbsDown, ThumbsUp } from "../components/icons"
@@ -108,15 +107,15 @@ export default function Chat(props: { messages: Message[] }) {
       </article>
 
       <form
-        className="mt-auto flex gap-2"
+        className="mt-auto flex items-center gap-2"
         onSubmit={(e) => {
           createMessageEntry([{ id: nanoid(7), content: input, role: "user" }])
           handleSubmit(e)
         }}
       >
-        <Input
+        <Textarea
           disabled={isLoading}
-          endContent={<Kbd keys={["enter"]} />}
+          maxRows={4}
           placeholder="Type here..."
           value={input}
           onChange={handleInputChange}
